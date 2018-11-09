@@ -8,6 +8,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Datatable
+@import "~datatables.net-dt/css/jquery.dataTables.css";
+
 #app {
     background-image: url("/images/copy/photo-1509030450996-dd1a26dda07a.jpeg");
     background-repeat: no-repeat;
