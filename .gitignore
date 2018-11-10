@@ -9,7 +9,6 @@
 /.idea
 /.vscode
 /nbproject
-/resources/views/vendor/
 /.vagrant
 package-lock.json
 Homestead.json
