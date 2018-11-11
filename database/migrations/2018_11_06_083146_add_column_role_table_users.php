@@ -14,7 +14,7 @@ class AddColumnRoleTableUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->integer('role')->defaul(1);
+           $table->integer('role')->default(1);
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnRoleTableUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('role');
         });
     }
 }
