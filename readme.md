@@ -13,10 +13,14 @@
 1. Composer install
 
 ```
+$ git clone git@github.com:ChuThiThuyhang/laravel-master.git
 $ composer install
 ```
 2. Copy .env file. You must copy .env.example to .env file
 
+```
+$ cp .env.example .env
+```
 3. Generate key for your applicaiton
 
 ```
@@ -56,6 +60,7 @@ $ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProv
 
 ```
 $ git clone https://github.com/Laradock/laradock.git
+$ cd laradock
 $ cp env-example .env
 $ docker-compose up -d nginx php-fpm postgres workspace
 
