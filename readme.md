@@ -9,6 +9,7 @@
 
 ## Install
 
+### Config your project 
 1. Composer install
 
 ```
@@ -21,6 +22,7 @@ $ composer install
 ```
 $ php artisan key:generate
 ```
+
 4. Run npm and bower
 
 ```
@@ -33,6 +35,7 @@ $ npm run dev
 ```
 $ npm run dev
 ```
+
 6. Some commands for adminlte packge
 
 - Customize views: If you need full control over the provided views, you can publish them:
@@ -46,6 +49,37 @@ $ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProv
 ```
 $ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProvider" --tag=assets --force
 ```
+
+### Config docker
+
+1. Run docker
+
+```
+$ git clone https://github.com/Laradock/laradock.git
+$ cp env-example .env
+$ docker-compose up -d nginx php-fpm postgres workspace
+
+```
+
+2. Config docker
+Edit .env file in your project
+
+```
+DB_CONNECTION=pgsql
+DB_HOST=laradock_postgres_1
+DB_PORT=5432
+DB_DATABASE=default
+DB_USERNAME=default
+DB_PASSWORD=secret
+```
+
+3. Run migrate
+
+```
+$ docker exec -it laradock_php-fpm_1 /bin/bash
+$ php artisan migrate
+```
+
 ## License
 
 Laravel version 5.7
