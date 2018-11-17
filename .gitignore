@@ -5,6 +5,10 @@
 /public/js/
 /public/images/vendor/
 /html/
+/public/fonts/
+/public/img/
+/public/vendor/jquery-ui/
+/public/vendor/time-picker/
 /storage/*.key
 /vendor
 /.idea
