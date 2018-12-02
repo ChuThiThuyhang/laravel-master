@@ -632,6 +632,8 @@ f<!DOCTYPE html>
             </div>
             <div class="sec-content mt-50">
                 <div class="row">
+
+                    @foreach($articles as $article)
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                         <div class="department">
                             <div class="thumb">
@@ -640,88 +642,16 @@ f<!DOCTYPE html>
                             <div class="department-details">
                                 <div class="round-style"></div>
                                 <i class="icon flaticon-tool-1"></i>
-                                <h4 class="title">Watering</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
+                                <h4 class="title">{{ $article->title }}</h4>
+                                <p class="details pt-5">
+                                    {{ $article->sologan }}
+                                </p>
+                                 <a href="{{route('articles.show', ['article' => $article->id])}}" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
                                  <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="department">
-                            <div class="thumb">
-                                <img class="img-responsive img-fullwidth" src="img/resource/featured-image-10.jpg" alt="">
-                            </div>
-                            <div class="department-details">
-                                <div class="round-style"></div>
-                                <i class="icon flaticon-nature-2"></i>
-                                <h4 class="title">Seed Planting</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
-                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="department">
-                            <div class="thumb">
-                                <img class="img-responsive img-fullwidth" src="img/resource/featured-image-6.jpg" alt="">
-                            </div>
-                            <div class="department-details">
-                                <div class="round-style"></div>
-                                <i class="icon flaticon-animal"></i>
-                                <h4 class="title">Pest Controling</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
-                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="department">
-                            <div class="thumb">
-                                <img class="img-responsive img-fullwidth" src="img/resource/featured-image-7.jpg" alt="">
-                            </div>
-                            <div class="department-details">
-                                <div class="round-style"></div>
-                                <i class="icon flaticon-people"></i>
-                                <h4 class="title">Cleaning</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
-                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="department">
-                            <div class="thumb">
-                                <img class="img-responsive img-fullwidth" src="img/resource/featured-image-5.jpg" alt="">
-                            </div>
-                            <div class="department-details">
-                                <div class="round-style"></div>
-                                <i class="icon flaticon-cut-1"></i>
-                                <h4 class="title">Cutting Taresing</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
-                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                        <div class="department">
-                            <div class="thumb">
-                                <img class="img-responsive img-fullwidth" src="img/resource/featured-image-9.jpg" alt="">
-                            </div>
-                            <div class="department-details">
-                                <div class="round-style"></div>
-                                <i class="icon flaticon-nature-3"></i>
-                                <h4 class="title">Tree Planting</h4>
-                                <p class="details pt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quia eligendi libero, laborum quaerat hic. Nesciunt, mollitia, rerum. Ex obcaecati ut consectetur ipsum a ipsam repellendus quas earum odit....</p>
-                                 <a href="#donation-form" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
-                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>              
             </div>
         </div>

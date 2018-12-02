@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::resource('users', 'UserController');
 });
+
+Route::group(['namespace' => 'Sites'], function() {
+    Route::resource('articles', 'ArticleController');
+
+    Route::post('/articles/uploadImage', 'ArticleController@uploadImage');
+});

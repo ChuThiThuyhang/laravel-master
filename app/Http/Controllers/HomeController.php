@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sites.home');
+        $articles = Article::all();
+
+        return view('sites.home', [
+            'articles' => $articles,
+        ]);
     }
 }
