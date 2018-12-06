@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 
 Route::group(['namespace' => 'Sites'], function() {
     Route::resource('articles', 'ArticleController');
+    Route::resource('comments', 'CommentController');
 
     Route::post('/articles/uploadImage', 'ArticleController@uploadImage');
 });

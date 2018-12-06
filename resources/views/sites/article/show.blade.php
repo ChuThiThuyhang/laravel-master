@@ -261,6 +261,29 @@
                         
 
                     </div> <!-- /.product-details-page-content -->
+
+                    <form method="POST" action="{{route('comments.store')}}">
+                        @csrf
+                        <div class="form-group">
+                          <label for="comment">Comment:</label>
+                          <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+                        </div>
+                        <input type="hidden" name="article_id" value="{{$article->id}}">
+                        <button class="btn btn-primary">Comment</button>
+                    </form>
+
+                    @foreach($comments as $comment)
+                    <!-- Left-aligned -->
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ $comment->user->name }}</h4>
+                            <p>{{ $comment->content}}</p>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
                 
                 
