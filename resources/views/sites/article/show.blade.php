@@ -246,13 +246,20 @@
     				<!--Services Section-->
                     <!-- .product-details-page-content -->
                     <div class="product-details-page-content">
-                        
+                        <p> 
+                            Publish at:
+                            {{ Carbon\Carbon::parse($article->created_at)->format('Y-m-d H:i')}} 
+                        </p>
+                        <p> 
+                            By:
+                            {{ $article->user->name }} 
+                        </p>
                         <div class="row product-details-box">
                             <div class="col-lg-12 img-holder">
                                 <div class="form-group">
                                     <h3> {{ $article->title }} </h3>
 
-                                    <h4> {{ $article->sologan }} </h4>
+                                    <h4 style="font-weight: bold;"> {{ $article->sologan }} </h4>
 
                                     {!! $article->content !!}
                                 </div>
@@ -262,28 +269,32 @@
 
                     </div> <!-- /.product-details-page-content -->
 
-                    <form method="POST" action="{{route('comments.store')}}">
-                        @csrf
+                    <!-- <form method="POST" action="{{route('comments.store')}}">
+                        @csrf -->
                         <div class="form-group">
                           <label for="comment">Comment:</label>
                           <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
                         </div>
-                        <input type="hidden" name="article_id" value="{{$article->id}}">
-                        <button class="btn btn-primary">Comment</button>
-                    </form>
+                        <input type="hidden" name="article_id" id="article_id" value="{{$article->id}}">
+                        <button class="btn btn-primary" id="comment-submit">Comment</button>
+                    <!-- </form> -->
 
-                    @foreach($comments as $comment)
-                    <!-- Left-aligned -->
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+                    <div id="comment-content" style="padding-top: 15px">
+                        @foreach($comments as $comment)
+                        <!-- Left-aligned -->
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="https://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ $comment->user->name }}</h4>
+                                <p style="margin-top: -10px; font-weight: bold;">{{ $comment->content}}</p>
+                                <p style="margin-top: -15px"> {{Carbon\Carbon::parse($comment->created_at)->diffForHumans()}} </p>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $comment->user->name }}</h4>
-                            <p>{{ $comment->content}}</p>
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <button class="btn btn-primary" id="loadmore"> Load more</button>
                 </div>
                 
                 
@@ -539,39 +550,53 @@
         }
     });
 </script>
+
 <script type="text/javascript">
-    tinymce.init({
-      selector: '#content',
-      plugins: 'image code',
-      toolbar: 'undo redo | image code',
-      images_upload_handler: function (blobInfo, success, failure) {
-           var xhr, formData;
-           xhr = new XMLHttpRequest();
-           xhr.withCredentials = false;
-           xhr.open('POST', '/admin/posts/uploadImage');
-           var token = '{{ csrf_token() }}';
-           xhr.setRequestHeader("X-CSRF-Token", token);
-           xhr.onload = function() {
-               var json;
-               if (xhr.status != 200) {
-                   failure('HTTP Error: ' + xhr.status);
-                   return;
-               }
-               json = JSON.parse(xhr.responseText);
+    $("#comment-submit").click(function() {
+        var comment = $('#comment').val();
+        var article_id = $('#article_id').val();
 
-               if (!json || typeof json.location != 'string') {
-                   failure('Invalid JSON: ' + xhr.responseText);
-                   return;
-               }
-               success(json.location);
-           };
-           formData = new FormData();
-           formData.append('file', blobInfo.blob(), blobInfo.filename());
-           xhr.send(formData);
-       }
+        if (comment != '') {
+            $.post("/comment/ajax-create",
+            {
+                content: comment,
+                article_id: article_id,
+            },
+            function(data, status){
+                $('#comment').val('');
+                if (status == "success") {
+                    $('#comment-content').prepend(data);
+                }
+            });
+        } else {
+            alert("Your comment is null!!!");
+        }
     });
-</script>
 
+    var skip = 0;
+    $('#loadmore').click(function() {
+        skip++;
+        var article_id = $('#article_id').val();
+
+        if (comment != '') {
+            $.post("/comment/getCommentFromLoadmore",
+            {
+                skip: skip,
+                article_id: article_id,
+            },
+            function(data, status){
+                $('#comment').val('');
+                if (status == "success" && data != 0) {
+                    $('#comment-content').append(data);
+                } else {
+                    $('#loadmore').hide();
+                }
+            });
+        } else {
+            alert("Your comment is null!!!");
+        }
+    })
+</script>
 </body>
 
 <!-- Mirrored from vision.to/garden-plant/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 04:54:40 GMT -->
