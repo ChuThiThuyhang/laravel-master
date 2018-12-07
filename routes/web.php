@@ -28,4 +28,6 @@ Route::group(['namespace' => 'Sites'], function() {
     Route::resource('comments', 'CommentController');
 
     Route::post('/articles/uploadImage', 'ArticleController@uploadImage');
+    Route::post('/comment/ajax-create', 'CommentController@ajaxCreate');
+    Route::post('/comment/getCommentFromLoadmore', 'CommentController@getCommentFromLoadmore');
 });
