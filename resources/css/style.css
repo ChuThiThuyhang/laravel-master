@@ -3916,12 +3916,8 @@ ul.list li {
 .product-details-box p {
     font-size: 14px;
     color: #999999;
-    border-top: 1px solid #EAEAEA;
-    border-bottom: 1px solid #EAEAEA;
-    padding: 20px 0;
-    margin: 20px 0;
     font-weight: 600;
-        font-size: 15px;
+    font-size: 15px;
     font-weight: 400;
     color: #999999;
     line-height: 2em;
