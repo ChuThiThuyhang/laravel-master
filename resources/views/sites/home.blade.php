@@ -74,68 +74,10 @@ f<!DOCTYPE html>
 
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation">
-                                <li class="dropdown current"><a href="index-1.html">Home</a>
-                                    <ul>
-                                        <li><a href="index-1.html">Home Style One</a></li>
-                                        <li><a href="index-2.html">Home Style Two</a></li>
-                                        <li><a href="index-3.html">Home Style Three</a></li>
-                                    </ul>
+                                <li class="dropdown current"><a href="/">Home</a>
                                 </li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li class="dropdown"><a href="#">Feature Service</a>
-                                    <ul>
-                                        <li><a href="feature-service-one.html">Feature Service One</a></li>
-                                        <li><a href="feature-service-two.html">Feature Service Two</a></li>
-                                        <li><a href="feature-service-details.html">Feature Service Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Page</a>
-                                    <ul>
-                                        <li><a href="appointment.html">Appointment Page</a></li>
-                                        <li><a href="calendar.html">Calendar</a></li>
-                                        <li><a href="coming-soon.html">Comiong Soon</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="features-revolutions.html">Features Revolutions</a></li>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                        <li class="dropdown"><a href="#">Our Gardeners</a>
-                                            <ul>
-                                                <li><a href="gardener.html">Gardeners One</a></li>
-                                                <li><a href="gardener-2.html">Gardeners Two</a></li>
-                                                <li><a href="gardener-detail.html">Gardeners Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Our Services</a>
-                                            <ul>
-                                                <li><a href="services.html">Services One</a></li>
-                                                <li><a href="services-2.html">Services Two</a></li>
-                                                <li><a href="services-detail.html">Services Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Our Pricing</a>
-                                            <ul>
-                                                <li><a href="pricing.html">Pricing One</a></li>
-                                                <li><a href="pricing-2.html">Pricing Two</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Shop</a>
-                                            <ul>
-                                                <li><a href="shop.html">Shop Page</a></li>
-                                                <li><a href="product-details.html">Product Page</a></li>
-                                                <li><a href="cart-page.html">Cart Page</a></li>
-                                                <li><a href="checkout-page.html">Checkout Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shortcode.html">Shortcode</a></li>
-                                        <li><a href="under-construction.html">Under Construction</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Blog One</a></li>
-                                        <li><a href="blog-three-column.html">Blog Three Column</a></li>
-                                        <li><a href="blog-detail.html">Blog Details</a></li>
-                                    </ul>
+                                <li><a href="#">About Us</a></li>
+                                <li class="dropdown"><a href="/articles/create">Create Article</a>
                                 </li>
                                 <li><a href="contact.html">Contact Us</a></li>
                             </ul>
@@ -143,10 +85,55 @@ f<!DOCTYPE html>
                     </nav>
                     <!-- Main Menu End-->
 
-                    <!--Cart Button-->
+                    @auth
                     <div class="appoinment-btn">
+                    @endauth
+                    @guest
+                    <div class="appoinment-btn" style="position: absolute;
+                        right: -97px;
+                        top: 25px">
+                    @endguest
+                        @guest
                         <!-- Modal: donate now Starts -->
-                        <a class="thm-btn pt-5 pb-5 mt-5 letter-spacing-1" data-toggle="modal" href="#modal-donate-now">Appoinment</a>
+                        <a class="thm-btn pt-5 pb-5 mt-5 letter-spacing-1" data-toggle="modal" href="#modal-register-now">Register</a>
+                        <div class="modal fade" id="modal-register-now" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog style-one" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Make an Appoinment</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="appoinment-form-outer">
+                                    <form action="/register" method="post">
+                                        @csrf
+                                        <div class="form-group has-feedback ">
+                                            <input type="text" name="name" class="form-control" value="" placeholder="Full name">
+                                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                                            </div>
+                                        <div class="form-group has-feedback ">
+                                            <input type="email" name="email" class="form-control" value="" placeholder="Email">
+                                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                                            </div>
+                                        <div class="form-group has-feedback ">
+                                            <input type="password" name="password" class="form-control" placeholder="Password">
+                                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                                            </div>
+                                        <div class="form-group has-feedback ">
+                                            <input type="password" name="password_confirmation" class="form-control" placeholder="Retype password">
+                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                                            </div>
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Modal: donate now Ends -->
+
+                        <!-- Modal: donate now Starts -->
+                        <a class="thm-btn pt-5 pb-5 mt-5 letter-spacing-1" data-toggle="modal" href="#modal-donate-now">Login</a>
                         <div class="modal fade" id="modal-donate-now" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                           <div class="modal-dialog style-one" role="document">
                             <div class="modal-content">
@@ -156,50 +143,20 @@ f<!DOCTYPE html>
                               </div>
                               <div class="modal-body">
                                 <div class="appoinment-form-outer">
-                                    <form action="http://vision.to/garden-plant/contact.html" method="post">
-
-                                        <!--Form Portlet-->
-                                        <div class="form-portlet">
-                                            <h3>Lorem ipsum dolor.</h3>
-
-                                            <div class="row clearfix">
-
-                                                <div class="form-group col-lg-12 col-md-12 col-xs-12">
-                                                    <div class="field-label">Name <span class="required">*</span></div>
-                                                    <input type="text" required placeholder="First Name" value="" name="name">
-                                                </div>
-
-                                                <div class="form-group col-lg-6 col-md-6 col-xs-12">
-                                                    <div class="field-label">Email <span class="required">*</span></div>
-                                                    <input type="email" required placeholder="Email" value="" name="name">
-                                                </div>
-                                                
-                                                <div class="form-group col-lg-6 col-md-6 col-xs-12">
-                                                    <div class="field-label">Phone <span class="required">*</span></div>
-                                                    <input type="text" required placeholder="Phone" value="" name="name">
-                                                </div>
-
-                                                <div class="form-group date col-lg-6 col-md-6 col-xs-12">
-                                                    <div class="field-label">Appoinment Date <span class="required">*</span></div>
-                                                    <input class="datepicker" type="text" required placeholder="MM/DD/Year" value="" name="name">
-                                                </div>
-
-                                                <div class="form-group time col-lg-6 col-md-6 col-xs-12">
-                                                    <div class="field-label">Time<span class="required">*</span></div>
-                                                    <input type="text" class="timepicker" required placeholder="Time" value="" name="name">
-                                                </div>
-                                                
-                                                <div class="form-group col-lg-12 col-md-12 col-xs-12">
-                                                    <div class="field-label">Address <span class="required">*</span></div>
-                                                    <input type="text" required placeholder="Address" value="" name="name">
-                                                </div>
-                                                
-                                                
-                                                <div class="text-center"><button class="thm-btn mt-30 mb-30 pt-10 pb-10 font-16" type="submit">Appoinment</button></div>
-                                                
-                                            </div>
+                                    <form action="{{route('login')}}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="email">Email address:</label>
+                                            <input type="email" class="form-control" id="email" name="email">
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" class="form-control" id="pwd" name="password">
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox"> Remember me</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-default" name="remember">Login</button>
                                     </form>
                                 </div>
                               </div>
@@ -207,6 +164,15 @@ f<!DOCTYPE html>
                           </div>
                         </div>
                         <!-- Modal: donate now Ends -->
+                        @endguest
+                        @auth
+                        <form method="POST" action="{{route('logout')}}">
+                            @csrf
+                            <button class="thm-btn pt-5 pb-5 mt-5 letter-spacing-1">Logout</button>
+                        </form>
+                        @endauth
+
+
                     </div>
                     
                 </div>
@@ -224,8 +190,8 @@ f<!DOCTYPE html>
             <div class="tp-banner">
                 <ul>
                     
-                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="img/main-slider/1.jpg"  data-saveperformance="off"  data-title="Awsome Service">
-                    <img src="img/main-slider/1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="http://images.sunflower.vn/wp-content/uploads/2015/08/20150807-ha-noi-ho-guom1.jpg"  data-saveperformance="off"  data-title="Awsome Service">
+                    <img src="http://images.sunflower.vn/wp-content/uploads/2015/08/20150807-ha-noi-ho-guom1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> 
                     
                     <div class="tp-caption lfl tp-resizeme"
                     data-x="center" data-hoffset="0"
@@ -239,7 +205,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>WE PROVIDE THE BEST</h2></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>WE PROVIDE</h2></div>
                     
                     
                     <div class="tp-caption lfr tp-resizeme"
@@ -254,7 +220,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>GARDEN CARE SOLUTION</h2></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>THE INFORMATION OF HANOI CITY</h2></div>
                     
                     <div class="tp-caption lfb tp-resizeme"
                     data-x="center" data-hoffset="-100"
@@ -268,7 +234,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Our Services</a></div></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Hanoi's Project</a></div></div>
                     
                     <div class="tp-caption lfb tp-resizeme"
                     data-x="center" data-hoffset="100"
@@ -282,12 +248,12 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Get Free Quote</a></div></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Hanoi's Article</a></div></div>
                     
                     </li>
                     
-                    <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="img/main-slider/2.jpg"  data-saveperformance="off"  data-title="Awsome Service">
-                        <img src="img/main-slider/2.jpg"  alt=""  data-bgposition="center 25%" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <li data-transition="slidedown" data-slotamount="1" data-masterspeed="1000" data-thumb="https://2.bp.blogspot.com/-3dk2VZ1KJys/UiXEfFdDQ1I/AAAAAAAAAcU/g967vTDvZsY/s1600/ha-noi-www.cungphuot.info.jpg"  data-saveperformance="off"  data-title="Awsome Service">
+                        <img src="https://2.bp.blogspot.com/-3dk2VZ1KJys/UiXEfFdDQ1I/AAAAAAAAAcU/g967vTDvZsY/s1600/ha-noi-www.cungphuot.info.jpg"  alt=""  data-bgposition="center 25%" data-bgfit="cover" data-bgrepeat="no-repeat"> 
                     
                         <div class="tp-caption lfl tp-resizeme"
                         data-x="right" data-hoffset="0"
@@ -301,7 +267,7 @@ f<!DOCTYPE html>
                         data-endelementdelay="0.3"
                         data-endspeed="1200"
                         data-endeasing="Power4.easeIn"
-                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>WE PROVIDE THE BEST</h2></div>
+                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>THE PROJECT </h2></div>
                         
                         
                         <div class="tp-caption lfr tp-resizeme"
@@ -316,7 +282,7 @@ f<!DOCTYPE html>
                         data-endelementdelay="0.3"
                         data-endspeed="1200"
                         data-endeasing="Power4.easeIn"
-                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>SUPPORT TRY TO LIVE UP TO</h2></div>
+                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>IS BEING INVESTED</h2></div>
                         
                         <div class="tp-caption lfb tp-resizeme"
                         data-x="right" data-hoffset="-200"
@@ -330,7 +296,7 @@ f<!DOCTYPE html>
                         data-endelementdelay="0.3"
                         data-endspeed="1200"
                         data-endeasing="Power4.easeIn"
-                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Our Services</a></div></div>
+                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Hanoi's Project</a></div></div>
                         
                         <div class="tp-caption lfb tp-resizeme"
                         data-x="right" data-hoffset="0"
@@ -344,12 +310,12 @@ f<!DOCTYPE html>
                         data-endelementdelay="0.3"
                         data-endspeed="1200"
                         data-endeasing="Power4.easeIn"
-                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Get Free Quote</a></div></div>
+                        style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Hanoi's Article</a></div></div>
                     
                     </li>
                     
-                    <li data-transition="slideup" data-slotamount="1" data-masterspeed="1000" data-thumb="img/main-slider/3.jpg"  data-saveperformance="off"  data-title="Awsome Service">
-                    <img src="img/main-slider/3.jpg"  alt=""  data-bgposition="center 35%" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <li data-transition="slideup" data-slotamount="1" data-masterspeed="1000" data-thumb="https://www.dulichvietnam.com.vn/data/image/tin-du-lich/ho-guom-ha-noi.jpg"  data-saveperformance="off"  data-title="Awsome Service">
+                    <img src="https://www.dulichvietnam.com.vn/data/image/tin-du-lich/ho-guom-ha-noi.jpg"  alt=""  data-bgposition="center 35%" data-bgfit="cover" data-bgrepeat="no-repeat"> 
                     
                     <div class="tp-caption lfl tp-resizeme"
                     data-x="center" data-hoffset="0"
@@ -363,7 +329,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>WE PROVIDE THE BEST</h2></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>WE PROVIDE THE ARTICLE</h2></div>
                     
                     
                     <div class="tp-caption lfr tp-resizeme"
@@ -378,7 +344,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>GARDEN CARE SERVICES</h2></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><h2>ABOUT HANOI</h2></div>
                     
                     <div class="tp-caption lfb tp-resizeme"
                     data-x="center" data-hoffset="-100"
@@ -392,7 +358,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Our Services</a></div></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn theme-btn">Hanoi's Project</a></div></div>
                     
                     <div class="tp-caption lfb tp-resizeme"
                     data-x="center" data-hoffset="100"
@@ -406,7 +372,7 @@ f<!DOCTYPE html>
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
                     data-endeasing="Power4.easeIn"
-                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Get Free Quote</a></div></div>
+                    style="z-index: 4; max-width: auto; max-height: auto; white-space: nowrap;"><div class="link-box"><a href="#" class="default-btn style-two theme-btn">Hanoi's Article</a></div></div>
                     
                     </li>
                     
@@ -485,8 +451,8 @@ f<!DOCTYPE html>
     <section class="top-services">
         <div class="auto-container">
             <div class="sec-title">
-                <h3>WE CARE ABOUT ClIENT</h3>
-                <h2>OUR OUTSTANDING SERVICES</h2>
+                <h3>WE PROVIDE INFORMATION ABOUT</h3>
+                <h2>HANOI CITY</h2>
                 <div class="line"></div>
             </div>
             <div class="row clearfix">
@@ -585,34 +551,33 @@ f<!DOCTYPE html>
     <section class="why-us-section">
         
         <div class="bg-grey"></div>
-        <div class="bg-image" style="background-image:url(img/background/bg4.jpg);"></div>
+        <div class="bg-image" style="background-image:url(http://images6.fanpop.com/image/photos/40400000/Hanoi-deedragongirl-40457230-2048-1152.jpg);"></div>
         
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-md-6 col-sm-6 col-xs-12 content-column">
                     <article class="inner-box">
                         <div class="sec-title style-two style-three">
-                            <h3>Why choose us?</h3>
-                            <h2>The reasons that you should contact us</h2>
+                            <h2>Welcomes to Hanoi!</h2>
                             <div class="line"></div>
                         </div>
                         
                         <div class="block">
                             <div class="number wow rollIn" data-wow-delay="0ms" data-wow-duration="1500ms">1</div>
-                            <h4>Over 20 years of experience</h4>
-                            <p>Nunc fringilla eros vitae nisl posuere, ut consectetur nulla feugiat. Nullam ut mauris vitae tortor sodales efficitur.</p>
+                            <h4>The long history </h4>
+                            <p>From 1010 until 1802, it was the most important political centre of Vietnam. It was eclipsed by Huế, the imperial capital of Vietnam during the Nguyễn Dynasty (1802–1945)</p>
                          </div>
                          
                          <div class="block">
                             <div class="number wow rollIn" data-wow-delay="300ms" data-wow-duration="1500ms">2</div>
-                            <h4>We have expert's and Guaranteed Work.</h4>
-                            <p>Quisque ac orci ante. Proin sit amet turpis lobortis, imperdiet nisi ut, viverra lorem. Nullam ex massa, euismod vel metus non.</p>
+                            <h4>During two wars</h4>
+                            <p>The city was occupied by the Imperial Japanese in 1940 and liberated in 1945, when it briefly became the seat of the Viet Minh government after Ho Chi Minh proclaimed the independence of Vietnam. However, the French returned and reoccupied the city in 1946. After nine years of fighting between the French and Viet Minh forces, Hanoi became the capital of an independent North Vietnam in 1954.</p>
                          </div>
                          
                          <div class="block">
                             <div class="number wow rollIn" data-wow-delay="600ms" data-wow-duration="1500ms">3</div>
-                            <h4>We are improving everyday</h4>
-                            <p>Nunc fringilla eros vitae nisl posuere, ut consectetur nulla feugiat. Nullam ut mauris vitae tortor sodales efficitur.</p>
+                            <h4>Location, topography</h4>
+                            <p>Hanoi is located in northern region of Vietnam, situated in the Vietnam's Red River delta, nearly 90 km (56 mi) away from the coastal area. Hanoi contains three basic kinds of terrain, which are the delta area, the midland area and mountainous zone. In general, the terrain is gradually lower from the north to the south and from the west to the east, with the average height ranging from 5 to 20 meters above the sea level. The hills and mountainous zones are located in the northern and western part of the city. The highest peak is at Ba Vi with 1281 m, located west of the city proper.</p>
                          </div>
                     
                     </article>
@@ -626,8 +591,8 @@ f<!DOCTYPE html>
     <section class="pt-60" data-bg-color="#f1f1f1">
         <div class="auto-container pb-35">
             <div class="sec-title">
-                <h3>WE CARE OUR FEATURE SUPPORT</h3>
-                <h2>OUR FEATURE SERVICE</h2>
+                <h3>THE ARTICLE ABOUT</h3>
+                <h2>HANOI CITY</h2>
                 <div class="line"></div>
             </div>
             <div class="sec-content mt-50">
@@ -657,96 +622,6 @@ f<!DOCTYPE html>
         </div>
     </section>
 
-    
-    <!--Team Section-->
-    <section class="team-section">
-        <div class="auto-container">
-            <div class="sec-title">
-                <h3>MEET OUR EXPERIENCED GARDENER</h3>
-                <h2>WE ARE EXPERTS IN OUR FIELD</h2>
-                <div class="line"></div>
-            </div>
-            <div class="sec-content mt-50">
-                <div class="row clearfix">  
-                    <!--Column-->
-                    <div class="col-md-6 col-sm-6 col-xs-12 column">
-                        <article class="row clearfix">
-                            <figure class="col-md-6 col-sm-6 col-xs-12 image"><a href="#"><img src="img/resource/team-1.jpg" alt=""></a></figure>
-                            <div class="col-md-6 col-sm-6 col-xs-12 content">
-                                <div class="title-box">
-                                    <h4>Timothy Newman</h4>
-                                    <p>Senior Worker</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante in, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac diam finibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas dolorum nisi nostrum voluptate aperiam eligendi. </p>
-                                </div>
-                                <div class="more-link"><a href="#" class="read-more"><span class="fa fa-caret-right"></span> More Info </a></div>
-                                
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <!--Column-->
-                    <div class="col-md-6 col-sm-6 col-xs-12 column">
-                        <article class="row clearfix">
-                            <figure class="col-md-6 col-sm-6 col-xs-12 image"><a href="#"><img src="img/resource/team-2.jpg" alt=""></a></figure>
-                            <div class="col-md-6 col-sm-6 col-xs-12 content">
-                                <div class="title-box">
-                                    <h4>Jeffrey Morgan</h4>
-                                    <p>Senior Worker</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante in, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac diam finibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas dolorum nisi nostrum voluptate aperiam eligendi. </p>
-                                </div>
-                                <div class="more-link"><a href="#" class="read-more"><span class="fa fa-caret-right"></span> More Info </a></div>
-                                
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <!--Column-->
-                    <div class="col-md-6 col-sm-6 col-xs-12 column">
-                        <article class="row clearfix">
-                            <figure class="col-md-6 col-sm-6 col-xs-12 image"><a href="#"><img src="img/resource/team-3.jpg" alt=""></a></figure>
-                            <div class="col-md-6 col-sm-6 col-xs-12 content">
-                                <div class="title-box">
-                                    <h4>Lori Robertson</h4>
-                                    <p>Senior Worker</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante in, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac diam finibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas dolorum nisi nostrum voluptate aperiam eligendi. </p>
-                                </div>
-                                <div class="more-link"><a href="#" class="read-more"><span class="fa fa-caret-right"></span> More Info </a></div>
-                                
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <!--Column-->
-                    <div class="col-md-6 col-sm-6 col-xs-12 column">
-                        <article class="row clearfix">
-                            <figure class="col-md-6 col-sm-6 col-xs-12 image"><a href="#"><img src="img/resource/team-4.jpg" alt=""></a></figure>
-                            <div class="col-md-6 col-sm-6 col-xs-12 content">
-                                <div class="title-box">
-                                    <h4>Brandon Fowler</h4>
-                                    <p>Senior Worker</p>
-                                </div>
-                                <div class="text">
-                                    <p>Etiam dignissim sit amet felis ac sagittis. Sed libero arcu, pharetra et ante in, elementum scelerisque arcu. Curabitur sagittis non justo at ultricies odio ac diam finibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas dolorum nisi nostrum voluptate aperiam eligendi. </p>
-                                </div>
-                                <div class="more-link"><a href="#" class="read-more"><span class="fa fa-caret-right"></span> More Info </a></div>
-                                
-                            </div>
-                        </article>
-                    </div>                
-                    
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    
-    
     <!--Get Quote Section-->
     <section class="get-quote">
         <div class="container p-0">
@@ -754,7 +629,7 @@ f<!DOCTYPE html>
                 
                 <!--Column-->
                 <div class="col-md-6 col-sm-12 col-xs-12 p-0">
-                    <img class="img-responsive" src="img/resource/image-forlift.png" alt="">
+                    <img class="img-responsive" src="http://images6.fanpop.com/image/photos/40400000/Hanoi-deedragongirl-40457230-2048-1152.jpg" alt="">
                 </div>
                 
                 <!--Column-->
@@ -841,177 +716,6 @@ f<!DOCTYPE html>
             </div>
         </div>
     </section>
-    
-    
-    <!--Gallery Section-->
-    <section class="gallery-section bg-parallax" data-bg-img="img/parallax/image-1.jpg">
-        <div class="container">
-            <div class="sec-title style-two">
-                <h3>OUR RECENT PROJECT</h3>
-                <h2>WE OFFER YOU THE BEST SUPPORT</h2>
-                <div class="line"></div>
-            </div>
-            <div class="sec-content mt-50">
-                <div class="row clearfix">
-                    
-                    <!--Column-->
-                    <div class="col-md-3 col-sm-4 col-xs-12 column wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <figure class="image mr-5">
-                            <a href="img/resource/gallery-image-1.jpg" class="lightbox-image"><img src="img/resource/gallery-image-1.jpg" alt=""></a>
-                            <div class="overlay-box"><a href="img/resource/gallery-image-1.jpg" class="link lightbox-image" title="Project Photos"><span class="txt font-30"><i class="fa fa-camera"></i></span></a></div>
-                        </figure>
-                    </div>
-                    
-                    <div class="col-md-3 col-sm-4 col-xs-12 column wow fadeIn" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        <figure class="image mr-5">
-                            <a href="img/resource/gallery-image-2.jpg" class="lightbox-image"><img src="img/resource/gallery-image-2.jpg" alt=""></a>
-                            <div class="overlay-box"><a href="img/resource/gallery-image-2.jpg" class="link lightbox-image" title="Project Photos"><span class="txt font-30"><i class="fa fa-camera"></i></span></a></div>
-                        </figure>
-                    </div>
-                    
-                    <div class="col-md-3 col-sm-4 col-xs-12 column wow fadeIn" data-wow-delay="600ms" data-wow-duration="1500ms">
-                        <figure class="image mr-5">
-                            <a href="img/resource/gallery-image-5.jpg" class="lightbox-image"><img src="img/resource/gallery-image-5.jpg" alt=""></a>
-                            <div class="overlay-box"><a href="img/resource/gallery-image-5.jpg" class="link lightbox-image" title="Project Photos"><span class="txt font-30"><i class="fa fa-camera"></i></span></a></div>
-                        </figure>
-                    </div>
-                    
-                    <div class="col-md-3 col-sm-4 col-xs-12 column wow fadeIn" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <figure class="image">
-                            <a href="img/resource/gallery-image-6.jpg" class="lightbox-image"><img src="img/resource/gallery-image-6.jpg" alt=""></a>
-                            <div class="overlay-box"><a href="img/resource/gallery-image-6.jpg" class="link lightbox-image" title="Project Photos"><span class="txt font-30"><i class="fa fa-camera"></i></span></a></div>
-                        </figure>
-                    </div>                
-                    
-                </div>                
-            </div>
-            
-            <br><br>
-            <div class="link-box"><a href="#" class="default-btn theme-btn">View Project</a></div>
-        </div>
-    </section>
-
-    
-    <!--Default Two Column Section-->
-    <section class="default-two-column pb-20">
-        
-        <div class="auto-container">
-            <div class="row clearfix">
-                
-                <!--Column--> 
-                <div class="col-md-6 col-sm-6 col-xs-12 column">
-                    <div class="inner-box">
-                        <div class="sec-title style-three">
-                            <h3>Our happy clients</h3>
-                            <h2>We believe in what you believe</h2>
-                            <div class="line"></div>
-                        </div>
-                        
-                        <div class="clients-column">
-                            <div class="clearfix">
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-1.png" alt=""></a></div>
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-2.png" alt=""></a></div>
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-3.png" alt=""></a></div>
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-4.png" alt=""></a></div>
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-5.png" alt=""></a></div>
-                                <div class="col-md-4 col-sm-6 col-xs-6 image"><a href="#"><img src="img/clients/logo-6.png" alt=""></a></div>
-                            </div>
-                        </div>
-                        
-                    
-                    </div>
-                </div>
-                
-                <!--Column-->
-                <div class="col-md-6 col-sm-6 col-xs-12 column">
-                    <div class="inner-box">
-                        <div class="sec-title style-three">
-                            <h3>Don’t hear from us only</h3>
-                            <h2>What people say about us</h2>
-                            <div class="line"></div>
-                        </div>
-                        
-                        <!--Testimonials Slider-->
-                        <div class="testimonial-slider">
-                            <div class="slider">
-                                
-                                <article class="slide-item">
-                                    <div class="slide-content">
-                                        <p>“Pellentesque a massa risus. Cras convallis finibus porta. Integer in ligula leo. Cras quis consequat nisl, at malesuada sapien. Mauris ultricies nisi eget velit bibendum, sit amet euismod mi gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.”</p>
-                                    </div>
-                                    <div class="slide-info">
-                                        <figure class="author-thumb img-circle"><a href="#"><img class="img-circle" src="img/resource/author-thumb-2.jpg" alt=""></a></figure>
-                                        <div class="author-info">
-                                            <h5>William Perez</h5>
-                                            <p>Melbourne</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                
-                                <article class="slide-item">
-                                    <div class="slide-content">
-                                        <p>“Pellentesque a massa risus. Cras convallis finibus porta. Integer in ligula leo. Cras quis consequat nisl, at malesuada sapien. Mauris ultricies nisi eget velit bibendum, sit amet euismod mi gravida. Cum sociis natoque penatibus et magnis dis parturient.”</p>
-                                    </div>
-                                    <div class="slide-info">
-                                        <figure class="author-thumb img-circle"><a href="#"><img class="img-circle" src="img/resource/author-thumb-3.jpg" alt=""></a></figure>
-                                        <div class="author-info">
-                                            <h5>Sara Millin</h5>
-                                            <p>Melbourne</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                
-                                <article class="slide-item">
-                                    <div class="slide-content">
-                                        <p>“Pellentesque a massa risus. Cras convallis finibus porta. Integer in ligula leo. Cras quis consequat nisl, at malesuada sapien. Mauris ultricies nisi eget velit bibendum, sit amet euismod mi gravida. Dis parturient montes, nascetur ridiculus mus.”</p>
-                                    </div>
-                                    <div class="slide-info">
-                                        <figure class="author-thumb img-circle"><a href="#"><img class="img-circle" src="img/resource/author-thumb-2.jpg" alt=""></a></figure>
-                                        <div class="author-info">
-                                            <h5>William Perez</h5>
-                                            <p>Melbourne</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                
-                                <article class="slide-item">
-                                    <div class="slide-content">
-                                        <p>“Pellentesque a massa risus. Cras convallis finibus porta. Integer in ligula leo. Cras quis consequat nisl, at malesuada sapien. Mauris ultricies nisi eget velit bibendum, sit amet euismod mi gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.”</p>
-                                    </div>
-                                    <div class="slide-info">
-                                        <figure class="author-thumb img-circle"><a href="#"><img class="img-circle" src="img/resource/author-thumb-3.jpg" alt=""></a></figure>
-                                        <div class="author-info">
-                                            <h5>Sara Millin</h5>
-                                            <p>Melbourne</p>
-                                        </div>
-                                    </div>
-                                </article> 
-                                
-                            </div>
-                        </div>  
-                    
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-    </section>
-
-    
-    <!--Parallax Section-->
-    <section class="parallax-section" style="background-image:url(img/parallax/image-2.jpg);">
-        <div class="auto-container">
-            <div class="text-center">
-                <h2>YOU ARE <strong>IN LOVE</strong> WITH GARDEN PLATN &amp; WANT TO <strong>STAND OUT</strong></h2>
-                <div class="line"></div>
-                <a class="theme-btn default-btn" href="#">REACH OUT TO US</a>
-                <a class="theme-btn normal-btn" href="#">BUY GARDEN NOW</a>
-                
-            </div>
-        </div>
-    </section>
-    
     
     <!--Main Footer-->
     <footer class="main-footer">
