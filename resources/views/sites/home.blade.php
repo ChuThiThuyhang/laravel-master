@@ -76,6 +76,13 @@ f<!DOCTYPE html>
                             <ul class="navigation">
                                 <li class="dropdown current"><a href="/">Home</a>
                                 </li>
+                                <li class="dropdown"><a href="#">Category</a>
+                                    <ul>
+                                        @foreach($categories as $category)
+                                        <li><a href="/categories/{{$category->id}}">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                <div class="dropdown-btn"></div></li>
                                 <li><a href="#">About Us</a></li>
                                 <li class="dropdown"><a href="/articles/create">Create Article</a>
                                 </li>

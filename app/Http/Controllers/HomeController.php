@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeController extends Controller
 
         return view('sites.home', [
             'articles' => $articles,
+            'categories' => Category::all(),
         ]);
     }
 }
