@@ -34,46 +34,28 @@
                         
                         <div class="row product-details-box">
                             <div class="col-lg-12 img-holder">
-                                <form method="POST" action="{{route('articles.store')}}" enctype="multipart/form-data">
-                                    @csrf
-                                    <!-- /.box-header -->
-                                    <div class="form-group">
-                                        <label for="avatar">Avatar:</label>
-                                        <input type="file" accept="image/*" onchange="loadFile(event)" id="avatar" name="avatar">
-                                        <img id="output" />
-                                        <script>
-                                          var loadFile = function(event) {
-                                            var output = document.getElementById('output');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                          };
-                                        </script>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Title:</label>
-                                        <textarea class="form-control" rows="4" id="title" name="title"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Category:</label>
-                                        <select class="form-control" id="sel1" name="category_id">
-                                            @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{ $category->name}}</option>
-                                            @endforeach
-                                          </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="comment">Sologan:</label>
-                                        <textarea class="form-control" rows="4" id="comment" name="sologan"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="comment">Content:</label>
-                                        <textarea name="content" style="height: 400px" id="content">
-                                
-                                        </textarea>
-                                    </div>
-                                        
-                                    <button class="btn btn-primary" style="margin-top: 30px"> Submit </button>
-                                </form>
+                                <h1> {{ $name }} </h1>
+                                <div class="row">
+                                	@foreach($articles as $article)
+									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+				                        <div class="department">
+				                            <div class="thumb">
+				                                <img class="img-responsive img-fullwidth" src="/img/resource/featured-image-4.jpg" alt="">
+				                            </div>
+				                            <div class="department-details">
+				                                <div class="round-style"></div>
+				                                <i class="icon flaticon-tool-1"></i>
+				                                <h4 class="title">{{ $article-> title }}</h4>
+				                                <p class="details pt-5">
+				                                    {{ $article->sologan }}
+				                                </p>
+				                                 <a href="/articles/{{$article->id}}" class="thm-btn btn-xs mr-5"><i class="fa fa-angle-double-right"></i> Read More</a>
+				                                 <a class="thm-btn inverse btn-xs" href="#"><i class="fa fa-heart"></i> Support</a>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    @endforeach
+								</div>
                             </div>
                         </div>
                         

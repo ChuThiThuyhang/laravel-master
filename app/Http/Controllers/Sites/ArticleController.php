@@ -7,17 +7,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
     public function create()
     {
-    	return view('sites.article.create');
+        $categories = Category::all();
+
+    	return view('sites.article.create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(Request $request)
     {
-        $data = $request->only(['sologan', 'content', 'title']);
+        $data = $request->only(['sologan', 'content', 'title', 'category', 'category_id']);
         $data['user_id'] = Auth::user()->id;
         $data['is_show'] = 0;
         $filePath = $request->file('avatar')->store('public');
